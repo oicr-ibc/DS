@@ -32,3 +32,4 @@
       command: R -e 'install.packages("{{ item.package }}")' creates=/usr/local/lib/R/site-library/{{ item.package }}
       with_items:
         - { package: 'GenABEL' }
+        - { package: 'MetABEL' }
