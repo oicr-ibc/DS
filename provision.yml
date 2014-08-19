@@ -24,3 +24,11 @@
     - name: R | Install R
       apt: pkg=r-base state=present update_cache=yes cache_valid_time=3600
       apt: pkg=r-base-dev state=present update_cache=yes cache_valid_time=3600
+
+    - name: R | Install Rprofile.site
+      copy: src=files/Rprofile.site dest=/etc/R/Rprofile.site mode=0644
+
+    - name: R | Install R packages
+      command: R -e 'install.packages("{{ item.package }}")' creates=/usr/local/lib/R/site-library/{{ item.package }}
+      with_items:
+        - { package: 'GenABEL' }
