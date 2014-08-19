@@ -1,0 +1,26 @@
+---
+- hosts: all
+  sudo: True
+  tasks:
+    - name: Packaging | Installing required packages
+      apt: pkg={{ item.package }} state=present update_cache=yes cache_valid_time=3600
+      with_items:
+        - { package: 'build-essential' }
+        - { package: 'devscripts' }
+        - { package: 'debhelper' }
+
+    - name: R | Install python-pycurl
+      apt: pkg=python-pycurl state=present update_cache=yes cache_valid_time=3600
+
+    - name: R | Fetch signing key
+      command: apt-key adv --keyserver keyserver.ubuntu.com --recv E084DAB9
+
+    - name: R | Add repository
+      apt_repository:
+        repo: 'deb http://watson.nci.nih.gov/cran_mirror/bin/linux/ubuntu precise/'
+        state: present
+        update_cache: yes
+
+    - name: R | Install R
+      apt: pkg=r-base state=present update_cache=yes cache_valid_time=3600
+      apt: pkg=r-base-dev state=present update_cache=yes cache_valid_time=3600
