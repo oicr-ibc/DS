@@ -1,0 +1,4 @@
+---
+provider:
+  virtualbox:
+    storage_root: '/home/iborozan/VirtualBox VMs'
