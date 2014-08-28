@@ -5,6 +5,18 @@ This small repository contains a setup that creates a small set of virtual machi
 all running R code. To use it, you'll need [Vagrant](http://www.vagrantup.com/‎),
 and possibly [Ansible](http://www.ansible.com).
 
+Install "precise64" box:
+
+```shell
+$ vagrant box add precise64 http://files.vagrantup.com/precise64.box
+```
+
+Make sure to install ansible as well:
+
+```shell
+$ git clone https://github.com/ansible/ansible.git
+```
+
 Basic use:
 
 ```shell
